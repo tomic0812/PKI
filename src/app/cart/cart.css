@@ -1,0 +1,16 @@
+.linija {
+    border: none;
+    height: 1px;
+    background-color: #ccc;
+    margin-top: 1rem;
+}
+
+.product-card {
+    padding: 15px 0;
+}
+
+.product-img {
+    width: 100px;
+    height: auto;
+    object-fit: cover;
+}

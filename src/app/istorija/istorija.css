@@ -1,0 +1,75 @@
+.ocena {
+
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: gold; 
+  transition: color 0.3s;
+  margin-right: 3px;
+
+}
+
+
+
+.ocena.fa-solid {
+
+  color: gold;
+
+}
+
+.ocena:hover,
+.ocena:hover ~ .ocena {
+    
+  color: gold;
+
+}
+
+.ocena:nth-child(1):hover,
+.ocena:nth-child(2):hover,
+.ocena:nth-child(3):hover,
+.ocena:nth-child(4):hover,
+.ocena:nth-child(5):hover {
+
+  color: gold;
+
+}
+
+.ocena.selected {
+
+    color: gold;
+
+}
+
+.slika {
+
+  width: 50px;
+  height: 50px;
+  
+}
+
+.tabela-header {
+
+  vertical-align: middle;
+  text-align: center;
+
+}
+
+.tabela-body {
+
+  vertical-align: middle;
+  text-align: center;
+
+}
+
+.igracka-link {
+
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+
+}
+
+.igracka-link:hover {
+
+  color: #7289da;
+
+}

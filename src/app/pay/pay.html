@@ -1,0 +1,84 @@
+<div class="container">
+    <h3 class="mb-4 mt-4 text-center">
+        <i class="fa-solid fa-credit-card"></i>
+        &nbsp;&nbsp;Plati rezervaciju
+    </h3>
+
+    <div class="card mx-auto" style="max-width: 720px;">
+        <div class="card-body">
+
+            <form id="pay-form" [formGroup]="form">
+
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="broj-kartice" class="form-label">
+                            Broj kartice
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="broj-kartice"
+                            formControlName="brojKartice"
+                            required>
+                    </div>
+
+                    <div class="col">
+                        <label for="datum-isteka" class="form-label">
+                            MM / YY
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="datum-isteka"
+                            formControlName="datumIsteka"
+                            required>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="cvv" class="form-label">
+                        CVV
+                    </label>
+
+                    <input
+                        type="text"
+                        class="form-control"
+                        id="cvv"
+                        formControlName="cvv"
+                        required>
+                </div>
+
+                <!-- DUGMICI -->
+                <div class="d-flex justify-content-between mt-4">
+
+                    <button
+                        type="button"
+                        [disabled]="!form.valid"
+                        id="submitBtn"
+                        class="btn btn-success"
+                        (click)="potvrdiPlacanje()">
+
+                        <i class="fa-solid fa-credit-card"></i>
+                        Plati rezervaciju
+                    </button>
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-toggle="modal"
+                        data-bs-target="#odustaniModal"
+                        (click)="odustani()">
+
+                        <i class="fa-solid fa-xmark"></i>
+                        Odustani
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>

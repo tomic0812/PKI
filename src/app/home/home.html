@@ -1,0 +1,74 @@
+@if (sve_igracke().length > 0) {
+<div class="container">
+    <div class="row align-items-end mb-5">
+        <div class="col-md-1">
+            <h2 class="mb-2">Filteri:</h2>
+        </div>
+        <div class="col-md-11">
+            <div class="row">
+                <div class="col-md-4">
+                    <label for="tip-select" class="form-label">
+                        Tip igračke
+                    </label>
+                    <select id="tip-select" class="form-select" [(ngModel)]="selectedType" (change)="pretraga()">
+                        <option value="all">Izaberite</option>
+                        @for (tip of getTypes(); track $index) {
+                        <option [value]="tip">{{tip}}</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="uzrast-select" class="form-label">
+                        Uzrast
+                    </label>
+                    <select id="uzrast-select" class="form-select" [(ngModel)]="selectedAgeGroup" (change)="pretraga()">
+                        <option value="all">Izaberite</option>
+                        @for (uzrast of getUzrasti(); track $index) {
+                        <option [value]="uzrast">{{uzrast}} godine</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="target-select" class="form-label">
+                        Namenjeno za
+                    </label>
+                    <select id="target-select" class="form-select" [(ngModel)]="selectedTarget" (change)="pretraga()">
+                        <option value="all">Izaberite</option>
+                        @for (target of getTargetGroups(); track $index) {
+                        <option [value]="target">{{target}}</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="mb-5">
+    <div class="row">
+        @if (igracke().length > 0) {
+        @for (igracka of igracke(); track $index) {
+        <div class="col-md-6">
+            <div class="card mb-3" style="width: 100%;">
+                <div class="row g-0">
+                    <div class="col-md-5">
+                        <a [routerLink]="`details/${igracka.permalink}`">
+                            <img [src]="utils.getImage(igracka.toyId)" class="img-fluid rounded-start baner" alt="...">
+                        </a>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="card-body">
+                            <h3 class="card-title naziv mb-5">{{igracka.name}}</h3>
+                            <h4 class="card-text cena mb-3">{{igracka.price}} RSD</h4>
+                            <h4 class="card-text godine">Godine: {{igracka.ageGroup.name}}</h4>
+                            <h4 class="card-text godine mb-3">Namenjeno za: {{igracka.targetGroup}}</h4>
+                            <h4 class="card-text mb-5">Ocena: {{ocene()[igracka.toyId] ?? 0}}/5&nbsp;<i
+                                    class="fa-solid fa-star ocena-ikonica"></i></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+        }
+    </div>
+</div>
+}

@@ -1,0 +1,43 @@
+@if (igracke().length > 0) {
+    <div class="container mt-5">
+        <h2 class="mb-4 text-center">CHECKOUT</h2>
+    </div>
+    @for (igracka of igracke(); track $index) {
+        <div class="product-card row align-items-center">
+            <div class="col-md-2 col-4">
+                <img [src]='utils.getImage(igracka.toyId)' alt="Proizvod" class="img-fluid product-img" />
+            </div>
+            <div class="col-md-10 col-8">
+                <h5>{{igracka.name}}</h5>
+                <p class="mb-1">Cena: {{igracka.price}} RSD</p>
+                <label for="kolicina">Kolicina: </label>
+                <input type="number" id="kolicina" min="1" [value]="getKolicina(igracka.toyId)" (change)="azurirajKolicinu(igracka.toyId, $event.target.valueAsNumber)">
+            </div>
+        </div>
+        <hr class="linija" />
+    }
+    <div class="mt-3 mb-4 text-end fw-bold fs-5">
+        Ukupno za plaćanje: {{ getUkupnaCena() | number:'1.0-2'}} RSD
+    </div>
+    <div class="mt-4">
+        <h5>Način plaćanja</h5>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="paymentMethod" id="pouzece" value="pouzece" checked />
+            <label class="form-check-label" for="pouzece">Pouzećem</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="paymentMethod" id="kartica" value="kartica" />
+            <label class="form-check-label" for="kartica">Karticom</label>
+        </div>
+    </div>
+    <hr class="linija" />
+    <div class="form-check mt-3">
+        <input class="form-check-input" type="checkbox" id="uslovi-koriscenja" (change)="prihvatiUsloveKoriscenja($event)" />
+        <label class="form-check-label" for="uslovi-koriscenja">Prihvatam uslove korišćenja.</label>
+    </div>
+    <div class="mt-4">
+        <button class="btn btn-primary w-100" [disabled]="!usloviKoriscenja()" on:click={checkout} id="checkoutBtn" (click)="checkout()">
+            <i class="fa-solid fa-circle-check"></i>&nbsp;Završi kupovinu
+        </button>
+    </div>
+}

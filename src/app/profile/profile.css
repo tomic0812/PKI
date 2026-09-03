@@ -1,0 +1,16 @@
+.logo {
+
+  size: 32px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+
+}
+
+.vrste {
+
+  margin-bottom: 20px;
+  padding-right: 2px 10px;
+
+}

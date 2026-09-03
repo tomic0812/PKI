@@ -1,0 +1,28 @@
+<div class="card login">
+    <div class="card-header">
+        <h5>Login</h5>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address:</label>
+                <input type="email" class="form-control" id="email" formControlName="email">
+            </div>
+            <div class="mb-3 position-relative">
+                <label for="password" class="form-label">Password:</label>
+                <div class="input-group">
+                    <input [type]="prikaziPassword ? 'text' : 'password'" class="form-control" id="password" formControlName="password" autocomplete="off">
+                    <button type="button" class="btn btn-outline-secondary" (click)="onOffPassword()">
+                        <i [class]="prikaziPassword ? 'fa fa-eye' : 'fa fa-eye-slash'"></i>
+                    </button>
+                </div>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Login
+                </button>
+                <a routerLink="/signup" class="btn btn-link ms-7">I don't have an account.</a>
+            </div>
+        </form>
+    </div>
+</div>

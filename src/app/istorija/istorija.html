@@ -1,0 +1,71 @@
+<div class="card">
+    <div class="card-header">
+        <h5>Istorija kupovina</h5>
+    </div>
+    <div class="card-body">
+        @if(user()?.data!.length > 0) {
+        <table class="table table-striped table-hover tabela-header">
+            <thead>
+                <tr>
+                    <th scope="col">ToyId</th>
+                    <th scope="col">Slika</th>
+                    <th scope="col">Ime</th>
+                    <th scope="col" class="hidden-3">Cena</th>
+                    <th scope="col" class="hidden-4">Tip</th>
+                    <th scope="col" class="hidden-2">Datum proizvodnje</th>
+                    <th scope="col">Status</th>
+                    <th scope="col" class="hidden-1">Updated At</th>
+                    <th scope="col">Options</th>
+                    <th scope="col">Ocena</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (u of user()?.data; track $index) {
+                <tr [attr.data-user-id]="u.toyId" class="tabela-body">
+                    <th scope="row">{{getIgracka(u)?.toyId}}</th>
+                    <td><img [src]="utils.getImage(getIgracka(u)!.toyId)" class="slika"></td>
+                    <td><a [routerLink]="`/details/${getIgracka(u)?.permalink}`" class="igracka-link">{{getIgracka(u)?.name}}</a></td>
+                    <td class="hidden-3">{{u.cena}}</td>
+                    <td class="hidden-4">{{getIgracka(u)!.type.name}}</td>
+                    <td class="hidden-2">{{utils.formatDate(getIgracka(u)!.productionDate)}}</td>
+                    <td>{{u.status}}</td>
+                    <td class="hidden-1">{{utils.formatDate(u.updateAt ?? u.createdAt)}}</td>
+                    <td>
+                        <div class="btn-group">
+                            @if (u.status == 'rezervisano') {
+                            <button type="button" class="btn btn-sm btn-primary" (click)="pay(u)">
+                                <i class="fa-solid fa-credit-card"></i> Pay
+                            </button>
+                            <button type="button" class="btn btn-sm btn-danger" (click)="cancel(u)">
+                                <i class="fa-solid fa-ban"></i> Cancel
+                            </button>
+                            } @else if (u.status == 'otkazano') {
+                            } @else {
+                            /
+                            }
+                        </div>
+                    </td>
+                    <td>
+                        <div class="ocena">
+                            @if (u.status == 'pristiglo') {
+                                @for (i of ocenaLista; track $index) {
+                                    <i class="fa-star fa rating-star"
+                                        [class.fa-solid]="getOcena(u.toyId) >= i"
+                                        [class.fa-regular]="getOcena(u.toyId) < i"
+                                        (click)="oceni(u.toyId, i)"
+                                        [title]="i + ' zvezdica'">
+                                    </i>
+                                }
+                            }
+                            @else {
+                            /
+                            }
+                        </div>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        }
+    </div>
+</div>

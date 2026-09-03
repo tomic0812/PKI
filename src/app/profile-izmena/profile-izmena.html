@@ -1,0 +1,96 @@
+<div class="row">
+    <div class="col-12 col-md-8">
+        <form [formGroup]="profileForm" (ngSubmit)="onProfileSubmit()">
+            <div class="card mb-3">
+                <div class="card-header d-flex flex-row gap-1">
+                    <img [src]="`https://ui-avatars.com/api/?name=${user()!.ime}%20${user()!.prezime}`" class="logo">
+                    <h5>&nbsp;&nbsp;User Profile</h5>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <label for="ime" class="form-label">Ime</label>
+                        <input type="text" class="form-control" id="ime" formControlName="ime">
+                    </div>
+                    <div class="mb-3">
+                        <label for="prezime" class="form-label">Prezime</label>
+                        <input type="text" class="form-control" id="prezime" formControlName="prezime">
+                    </div>
+                    <div class="mb-3">
+                        <label for="telefon" class="form-label">Telefon</label>
+                        <input type="tel" class="form-control" id="telefon" formControlName="telefon">
+                    </div>
+                    <div class="mb-3">
+                        <label for="adresa" class="form-label">Adresa</label>
+                        <input type="text" class="form-control" id="adresa" formControlName="adresa">
+                    </div>
+                    <div class="mb-3">
+                        <label for="vrste" class="form-label">Omiljne vrste igračaka</label>
+                        <div class="dropdown">
+                            <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                Izaberite omiljene vrste igračaka
+                            </button>
+                            <ul class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
+                                @for (vrsta of vrste(); track $index) {
+                                    <li (click)="vrsteSelection(vrsta.name)">
+                                        <a class="dropdown-item">
+                                            <input type="checkbox" [checked]="selectedVrste.includes(vrsta.name)">&nbsp;&nbsp;{{vrsta.name}}
+                                        </a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="selected-vrste mt-2">
+                            @for (selected of selectedVrste; track $index) {
+                                <span class="badge bg-secondary me-2">{{selected}}</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <button class="btn btn-sm btn-primary">
+                        <i class="fa-solid fa-floppy-disk"></i> Sačuvaj Izmene
+                    </button>
+                    <button type="button" class="btn btn-sm btn-danger" (click)="odustaniIzmenaProfile()">
+                        <i class="fa-solid fa-circle-xmark"></i> Odustani
+                    </button>
+                    <button type="button" class="btn btn-sm btn-secondary" (click)="promeniSifru()" [disabled]="dugmePromeniSifru">
+                        <i class="fa-solid fa-pencil"></i> Promeni Šifru
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-12 col-md-4">
+        @if (formaUpdatePassword) {
+            <form [formGroup]="passwordForm" (ngSubmit)="onPasswordSubmit()">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h5>Reset Password</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label for="trenutna" class="form-label">Current Password</label>
+                            <input type="password" class="form-control" id="trenutna" formControlName="trenutna">
+                        </div>
+                        <div class="mb-3">
+                            <label for="newPassword" class="form-label">New Password</label>
+                            <input type="password" class="form-control" id="newPassword" formControlName="newPassword">
+                        </div>
+                        <div class="mb-3">
+                            <label for="repeat" class="form-label">Repeat Password</label>
+                            <input type="password" class="form-control" id="repeat" formControlName="repeat">
+                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between">
+                        <button class="btn btn-sm btn-primary">
+                            <i class="fa-solid fa-floppy-disk"></i> Change Password
+                        </button>
+                        <button type="button" class="btn btn-sm btn-danger" (click)="odustaniIzmenaUserPassword()">
+                            <i class="fa-solid fa-circle-xmark"></i> Odustani
+                        </button>
+                    </div>
+                </div>
+            </form>
+        }
+    </div>
+</div>

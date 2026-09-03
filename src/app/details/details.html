@@ -1,0 +1,46 @@
+@if (igracka()) {
+
+<div class="card mb-3" style="width: 100%;">
+    <div class="row g-0" style="height: 100%;">
+        <div class="col-md-5">
+            <img [src]="utils.getImage(igracka()!.toyId)" class="img-fluid rounded-start baner" alt="baner">
+            <div id="gallery"></div>
+        </div>
+        <div class="col-md-7">
+            <div class="card-body">
+                <span class="badge text-bg-light mb-3">Naziv</span>
+                <h3 class="card-title naziv mb-3">{{igracka()!.name}}</h3>
+                <button class="btn btn-success" id="dodaj-u-korpu-btn" (click)="addToCart()"><i class="fa-solid fa-cart-shopping"></i>&nbsp;Dodaj u korpu</button>
+                <hr class="linija">
+                <span class="badge text-bg-light mb-3">Cena</span>
+                <h4 class="card-text cena">{{igracka()!.price}} RSD</h4>
+                <hr class="linija">
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <span class="badge text-bg-light mb-3">Uzrast</span>
+                        <h5 class="card-text uzrast mb-3">{{igracka()!.ageGroup.name}}</h5>
+                    </div>
+                    <div class="col-md-9">
+                        <span class="badge text-bg-light mb-3">Namenjeno za</span>
+                        <h5 class="card-text uzrast mb-3">{{igracka()!.targetGroup}}</h5>
+                    </div>
+                </div>
+                <hr class="linija">
+                <span class="badge text-bg-light mb-3">Tip</span>
+                <h5 class="card-text tip mb-3">{{igracka()!.type.name}}</h5>
+                <hr class="linija">
+                <div class="row mb-3">
+                    <div class="col-md-10">
+                        <span class="badge text-bg-light mb-3">Opis igračke</span>
+                        <h5 class="card-text opis">{{igracka()!.description}}</h5>
+                    </div>
+                    <div class="col-md-2">
+                        <span class="badge text-bg-light mb-3">Ocena</span>
+                        <h5 class="card-text mb-3">{{ocena()}}/5&nbsp;<i class="fa-solid fa-star ocena-ikonica"></i></h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}

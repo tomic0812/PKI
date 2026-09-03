@@ -1,0 +1,15 @@
+select[multiple] {
+    height: auto;
+    padding: 10px;
+    overflow: hidden;
+}
+
+select[multiple] option:checked {
+    background-color: #007bff;
+    color: white;
+}
+
+select[multiple] {
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}

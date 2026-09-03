@@ -1,0 +1,23 @@
+#dodaj-u-korpu-btn {
+    position: absolute;
+    top: 1.8rem;
+    right: 1rem;
+}
+
+.baner {
+    height: auto;
+}
+
+.linija {
+    border: none;
+    height: 1px;
+    background-color: #ccc;
+    margin-top: 1rem;
+}
+
+.ocena-ikonica {
+
+    color: gold;
+    font-size: 1.6rem;
+
+}
